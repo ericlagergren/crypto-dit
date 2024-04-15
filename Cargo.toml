@@ -1,0 +1,35 @@
+[package]
+name = "crypto-dit"
+version = "0.1.0"
+edition = "2021"
+description = """
+Data Independent Timing support.
+"""
+license = "BSD-3-Clause"
+readme = "README.md"
+documentation = "https://docs.rs/crypto-dit"
+repository = "https://github.com/ericlagergren/crypto-dit"
+keywords = [ "data-independent-timing", "constant-time", "dit", "doit" ]
+categories = [ "cryptography", "no-std", "no-std::no-alloc" ]
+
+[features]
+default = []
+
+# Enable libc support.
+libc = [
+	"dep:libc",
+]
+
+[dependencies]
+cfg-if = { version = "1.0.0" }
+libc = { version = "0.2", optional = true }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+libc = { version = "0.2" }
+
+[dev-dependencies]
+libc = { version = "0.2" }
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docs"]
